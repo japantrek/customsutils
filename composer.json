@@ -14,5 +14,6 @@
 			"nvbooster\\CustomsUtils\\" : ""
 		}
 	},
+	"minimum-stability" : "dev",
 	"license" : "MIT"
 }
