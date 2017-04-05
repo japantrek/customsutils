@@ -1,0 +1,18 @@
+{
+	"name" : "nvbooster/customsutils",
+	"description" : "Helper for calculating custom duties for imported cars",
+	"type" : "library",
+	"homepage" : "https://github.com/nvbooster/customsutils",
+	"authors" : [{
+			"name" : "Vyacheslav Nechipurenko",
+			"email" : "nvb@aproxima.ru",
+			"homepage" : "https://github.com/nvbooster"
+		}
+	],
+	"autoload" : {
+		"psr-4" : {
+			"nvbooster\\CustomsUtils\\" : ""
+		}
+	},
+	"license" : "MIT"
+}
