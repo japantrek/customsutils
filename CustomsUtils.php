@@ -172,7 +172,7 @@ class CustomsUtils
             return self::getETSRates($declaredCost, $ageClass, $volume);
         } else {
             $rates = self::getETTRates();
-            if ($code = self::getTNVED($lightVehicle, $volume, $ageClass, $fueltype, $mass) && key_exists($code, $rates)) {
+            if (($code = self::getTNVED($lightVehicle, $volume, $ageClass, $fueltype, $mass)) && key_exists($code, $rates)) {
                 return $rates[$code];
             } else {
                 return false;
