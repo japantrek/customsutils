@@ -2,7 +2,7 @@
 namespace nvbooster\CustomsUtils;
 
 /**
- * Функции для расчетов таможенных платежей
+ * Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°СЃС‡РµС‚РѕРІ С‚Р°РјРѕР¶РµРЅРЅС‹С… РїР»Р°С‚РµР¶РµР№
  *
  * @author nvb <nvb@aproxima.ru>
  */
@@ -19,7 +19,7 @@ class CustomsUtils
 
 
     /**
-     * Базовая ставка утилизационного сбора
+     * Р‘Р°Р·РѕРІР°СЏ СЃС‚Р°РІРєР° СѓС‚РёР»РёР·Р°С†РёРѕРЅРЅРѕРіРѕ СЃР±РѕСЂР°
      *
      * @param string $lightVehicle
      *
@@ -31,7 +31,7 @@ class CustomsUtils
     }
 
     /**
-     * Коэфициент утилизацонного сбора
+     * РљРѕСЌС„РёС†РёРµРЅС‚ СѓС‚РёР»РёР·Р°С†РѕРЅРЅРѕРіРѕ СЃР±РѕСЂР°
      *
      * @param string  $ageClass
      * @param boolean $privateUse
@@ -45,7 +45,7 @@ class CustomsUtils
     public static function getRecycleRate($ageClass, $privateUse = true, $lightVehicle = true, $volume = 0, $mass = 0, $electro = false)
     {
         /**
-         * Ставки на 2016 год.
+         * РЎС‚Р°РІРєРё РЅР° 2016 РіРѕРґ.
          * http://www.akebono.in/uploads/11-12-2015_1350.pdf
          */
         $rates = array(
@@ -111,7 +111,7 @@ class CustomsUtils
     }
 
     /**
-     * Стоймость таможенного оформления
+     * РЎС‚РѕР№РјРѕСЃС‚СЊ С‚Р°РјРѕР¶РµРЅРЅРѕРіРѕ РѕС„РѕСЂРјР»РµРЅРёСЏ
      *
      * @param integer $declaredCost
      *
@@ -139,7 +139,7 @@ class CustomsUtils
     }
 
     /**
-     * Применима ли единая таможенная ставка
+     * РџСЂРёРјРµРЅРёРјР° Р»Рё РµРґРёРЅР°СЏ С‚Р°РјРѕР¶РµРЅРЅР°СЏ СЃС‚Р°РІРєР°
      *
      * @param boolean $privateUse
      * @param boolean $lightVehicle
@@ -154,7 +154,7 @@ class CustomsUtils
     }
 
     /**
-     * Ставки пошлины (% от стоймости и ставка за 1куб.см)
+     * РЎС‚Р°РІРєРё РїРѕС€Р»РёРЅС‹ (% РѕС‚ СЃС‚РѕР№РјРѕСЃС‚Рё Рё СЃС‚Р°РІРєР° Р·Р° 1РєСѓР±.СЃРј)
      *
      * @param integer $declaredCost
      * @param string  $ageClass
@@ -172,9 +172,12 @@ class CustomsUtils
             return self::getETSRates($declaredCost, $ageClass, $volume);
         } else {
             $rates = self::getETTRates();
-            $code = self::getTNVED($lightVehicle, $volume, $ageClass, $fueltype, $mass);
+            if ($code = self::getTNVED($lightVehicle, $volume, $ageClass, $fueltype, $mass) && key_exists($code, $rates)) {
+                return $rates[$code];
+            } else {
+                return false;
+            }
 
-            return $rates[$code];
         }
     }
 
@@ -227,7 +230,7 @@ class CustomsUtils
     }
 
     /**
-     * Ставки пошлины по кодам ТН ВЭД
+     * РЎС‚Р°РІРєРё РїРѕС€Р»РёРЅС‹ РїРѕ РєРѕРґР°Рј РўРќ Р’Р­Р”
      *
      * @return array
      */
@@ -244,18 +247,18 @@ class CustomsUtils
             '8703 22 909 4' => array('dcb' => 25, 'vb' => .5),
             '8703 22 909 8' => array('dcb' => 25, 'vb' => .5),
 
-            '8703 23 191 0' => array('dcb' => 23, 'vb' => .83),
-            '8703 23 192 1' => array('dcb' => 23, 'vb' => 1.2),
-            '8703 23 192 2' => array('dcb' => 23, 'vb' => 1.2),
-            '8703 23 901 3' => array('dcb' => 0, 'vb' => 1.6),
-            '8703 23 901 4' => array('dcb' => 25, 'vb' => .45),
-            '8703 23 901 8' => array('dcb' => 25, 'vb' => .45),
-            '8703 23 902 2' => array('dcb' => 0, 'vb' => 2.2),
-            '8703 23 902 3' => array('dcb' => 25, 'vb' => .55),
-            '8703 23 902 4' => array('dcb' => 25, 'vb' => .55),
-            '8703 23 902 7' => array('dcb' => 0, 'vb' => 2.2),
-            '8703 23 902 8' => array('dcb' => 25, 'vb' => .55),
-            '8703 23 902 9' => array('dcb' => 25, 'vb' => .55),
+            '8703 23 194 0' => array('dcb' => 23, 'vb' => .83),
+            '8703 23 198 1' => array('dcb' => 23, 'vb' => 1.2),
+            '8703 23 198 9' => array('dcb' => 23, 'vb' => 1.2),
+            '8703 23 904 1' => array('dcb' => 0, 'vb' => 1.6),
+            '8703 23 904 2' => array('dcb' => 25, 'vb' => .45),
+            '8703 23 904 9' => array('dcb' => 25, 'vb' => .45),
+            '8703 23 908 1' => array('dcb' => 0, 'vb' => 2.2),
+            '8703 23 908 2' => array('dcb' => 25, 'vb' => .55),
+            '8703 23 908 3' => array('dcb' => 25, 'vb' => .55),
+            '8703 23 908 7' => array('dcb' => 0, 'vb' => 2.2),
+            '8703 23 908 8' => array('dcb' => 25, 'vb' => .55),
+            '8703 23 908 9' => array('dcb' => 25, 'vb' => .55),
 
             '8703 24 109 9' => array('dcb' => 23, 'vb' => 1.57),
             '8703 24 909 3' => array('dcb' => 0, 'vb' => 3.2),
@@ -277,7 +280,7 @@ class CustomsUtils
             '8703 33 909 4' => array('dcb' => 25, 'vb' => 1),
             '8703 33 909 8' => array('dcb' => 25, 'vb' => 1),
 
-            '8703 90 109 1' => array('dcb' => 0, 'vb' => 0),
+            '8703 80 000 2' => array('dcb' => 16, 'vb' => 0),
 
             //------------------
             '8704 21 310 0' => array('dcb' => 10, 'vb' => 0),
@@ -362,31 +365,31 @@ class CustomsUtils
                     $code .= '3';
                     if (self::AGE_NEW == $ageClass) {
                         if ($volume <= 1800) {
-                            $code .= ' 191 0';
+                            $code .= ' 194 0';
                         } elseif ($volume <= 2300) {
-                            $code .= ' 192 1';
+                            $code .= ' 198 1';
                         } else {
-                            $code .= ' 191 2';
+                            $code .= ' 198 9';
                         }
                     } else {
                         if ($volume <= 1800) {
-                            $code .= ' 901';
+                            $code .= ' 904';
                             if (self::AGE_OLD == $ageClass) {
-                                $code .= ' 3';
+                                $code .= ' 1';
                             } elseif (self::AGE_USED_E == $ageClass) {
-                                $code .= ' 4';
+                                $code .= ' 2';
                             } else {
-                                $code .= ' 8';
+                                $code .= ' 9';
                             }
                         } else {
-                            $code .= ' 902';
+                            $code .= ' 908';
                             if ($volume <= 2300) {
                                 if (self::AGE_OLD == $ageClass) {
-                                    $code .= ' 2';
+                                    $code .= ' 1';
                                 } elseif (self::AGE_USED_E == $ageClass) {
-                                    $code .= ' 3';
+                                    $code .= ' 2';
                                 } else {
-                                    $code .= ' 4';
+                                    $code .= ' 3';
                                 }
                             } else {
                                 if (self::AGE_OLD == $ageClass) {
@@ -447,8 +450,10 @@ class CustomsUtils
                         $code .= ' 909 8';
                     }
                 }
+            } elseif (self::TYPE_ELECTRO == $fueltype) {
+                $code .= ' 80 000 2';
             } else {
-                $code .= ' 90 109 1';
+                return false;
             }
         } else {
             $code .= '04';
@@ -456,7 +461,7 @@ class CustomsUtils
                 $code .= ' 2';
                 if ($mass <= 5) {
                     $code .= '1';
-                    if ($volume <= 2500) {
+                    if ($volume > 2500) {
                         $code .= ' 3';
                         if (self::AGE_NEW == $ageClass) {
                             $code .= '10 0';
@@ -502,7 +507,7 @@ class CustomsUtils
                         $code .= ' 990 7';
                     }
                 }
-            } elseif (self::TYPE_PETROL) {
+            } elseif (self::TYPE_PETROL == $fueltype) {
                 $code .= ' 3';
                 if ($mass <= 5) {
                     $code .= '1';
@@ -541,6 +546,8 @@ class CustomsUtils
                         $code .= ' 990 7';
                     }
                 }
+            } else {
+                return false;
             }
         }
 
@@ -548,7 +555,7 @@ class CustomsUtils
     }
 
     /**
-     * Ставка акциза
+     * РЎС‚Р°РІРєР° Р°РєС†РёР·Р°
      *
      * @param boolean $privateUse
      * @param boolean $lightVehicle
