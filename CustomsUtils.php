@@ -574,9 +574,9 @@ class CustomsUtils
             && $power > 90
         ) {
             if ($power <= 150) {
-                $rate = 41;
+                $rate = 43;
             } else {
-                $rate = 402;
+                $rate = 420;
             }
         }
 
