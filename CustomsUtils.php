@@ -44,28 +44,24 @@ class CustomsUtils
      */
     public static function getRecycleRate($ageClass, $privateUse = true, $lightVehicle = true, $volume = 0, $mass = 0, $electro = false)
     {
-        /**
-         * Ставки на 2016 год.
-         * http://www.akebono.in/uploads/11-12-2015_1350.pdf
-         */
         $rates = array(
             // I. M1, (G)
-            '1.' => array(1.42, 5.3),
-            '2.a' => array(1.42, 5.3),
-            '2.b' => array(2.21, 8.26),
-            '2.c' => array(4.22, 16.12),
+            '1.' => array(1.63, 6.1),
+            '2.a' => array(1.65, 6.15),
+            '2.b' => array(4.2, 15.69),
+            '2.c' => array(6.3, 24.01),
             '2.d' => array(5.73, 28.5),
             '2.e' => array(9.08, 35.01),
             '3.' => array(0.17, 0.26),
 
             // II. N1, N2, N3 (G)
-            '4.' => array(0.83, 0.88),
-            '5.' => array(1.32, 2.06),
-            '6.' => array(1.65, 2.64),
-            '7.' => array(1.82, 4.56),
-            '8.' => array(2.21, 6.91),
-            '9.' => array(2.43, 10.06),
-            '10.' => array(4.79, 11.8)
+            '4.' => array(0.95, 1.01),
+            '5.' => array(2, 2.88),
+            '6.' => array(1.9, 3.04),
+            '7.' => array(2.09, 5.24),
+            '8.' => array(2.54, 7.95),
+            '9.' => array(2.79, 11.57),
+            '10.' => array(5.5, 13.57)
         );
 
         $group = '';
