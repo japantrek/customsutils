@@ -570,17 +570,17 @@ class CustomsUtils
             && $power > 90
         ) {
             if ($power <= 150) {
-                $rate = 45;
+                $rate = 47;
             } elseif ($power <= 200) {
-                $rate = 437;
+                $rate = 454;
             } elseif ($power <= 300) {
-                $rate = 714;
+                $rate = 743;
             } elseif ($power <= 400) {
-                $rate = 1218;
+                $rate = 1267;
             } elseif ($power <= 500) {
-                $rate = 1260;
+                $rate = 1310;
             } else {
-                $rate = 1302;
+                $rate = 1354;
             }
         }
 
