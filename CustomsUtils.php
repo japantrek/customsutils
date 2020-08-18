@@ -116,17 +116,25 @@ class CustomsUtils
     public static function getCustomsFee($declaredCost)
     {
         if ($declaredCost <= 200000) {
-            $fee = 500;
+            $fee = 775;
         } elseif ($declaredCost <= 450000) {
-            $fee = 1000;
+            $fee = 1550;
         } elseif ($declaredCost <= 1200000) {
-            $fee = 2000;
-        } elseif ($declaredCost <= 2500000) {
-            $fee = 5500;
-        } elseif ($declaredCost <= 5000000) {
-            $fee = 7500;
-        } elseif ($declaredCost <= 10000000) {
+            $fee = 3100;
+        } elseif ($declaredCost <= 2700000) {
+            $fee = 8530;
+        } elseif ($declaredCost <= 4200000) {
+            $fee = 12000;
+        } elseif ($declaredCost <= 5500000) {
+            $fee = 15500;
+        } elseif ($declaredCost <= 7000000) {
             $fee = 20000;
+        } elseif ($declaredCost <= 8000000) {
+            $fee = 23000;
+        } elseif ($declaredCost <= 9000000) {
+            $fee = 25000;
+        } elseif ($declaredCost <= 10000000) {
+            $fee = 27000;
         } else {
             $fee = 30000;
         }
