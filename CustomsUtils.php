@@ -154,7 +154,7 @@ class CustomsUtils
      */
     public static function isETSApplied($privateUse, $lightVehicle, $ageClass, $electro = false)
     {
-        return $privateUse && $lightVehicle && (!$electro || self::AGE_NEW == $ageClass);
+        return $privateUse && $lightVehicle && !$electro;
     }
 
     /**
@@ -286,7 +286,7 @@ class CustomsUtils
             '8703 33 909 4' => array('dcb' => 20, 'vb' => .8),
             '8703 33 909 8' => array('dcb' => 20, 'vb' => .8),
 
-            '8703 80 000 2' => array('dcb' => 0, 'vb' => 0),
+            '8703 80 000 2' => array('dcb' => 15, 'vb' => 0),
 
             //------------------
             '8704 21 310 0' => array('dcb' => 10, 'vb' => 0),
