@@ -67,10 +67,10 @@ class CustomsUtils
         $group = '';
 
         if ($lightVehicle) {
-            if ($privateUse) {
-                $group = '3.';
-            } elseif ($electro) {
+            if ($electro) {
                 $group = '1.';
+            } elseif ($privateUse) {
+                $group = '3.';
             } else {
                 $group = '2.';
                 if ($volume <= 1000) {
